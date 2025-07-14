@@ -6,6 +6,7 @@ import sidebarItems from './components/Layout/sidebarItems';
 
 function App() {
 
+    {/* Render Content */}
     const renderContent = () => {
         switch (activeItem) {
             case 'dashboard':

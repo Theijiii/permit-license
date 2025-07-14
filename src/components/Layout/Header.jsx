@@ -22,6 +22,8 @@ function Header({sidebarCollapsed, onToggleSidebar, breadcrumb = ['Dashboard']})
                         </div>
                     </div>
                 </div>
+
+                {/* Search Bar */}
                 <div className='flex-1 max-w-md mx-8'>
                     <div className='relative'>
                         <Search className='w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500' />
@@ -34,8 +36,9 @@ function Header({sidebarCollapsed, onToggleSidebar, breadcrumb = ['Dashboard']})
                     </div>
                 </div>
 
-                {/* right */}
+                {/* right side*/}
                 <div className='flex items-center space-x-1'>
+
                     {/* notification */}
                     <button className='relative rounded-xl p-2 text-slate-600 hover:bg-slate-200 transition-colors'>
                         <Bell className='w-6 h-6' />

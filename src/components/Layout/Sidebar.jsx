@@ -35,7 +35,7 @@ function Sidebar({ collapsed, onPageChange, activeItem }) {
                     </div>
                 </div>
 
-                {/* Navigation Links */}
+                {/* Navigation Links Mapping*/}
                 <nav className='flex-1 p-4 space-y-2 overflow-y-auto'>
                     {sidebarItems.map((item) => {
                         return (
@@ -87,8 +87,6 @@ function Sidebar({ collapsed, onPageChange, activeItem }) {
                     })}
                 </nav>
             </div>
-            {/* Content Area */}
-            
         </div>
     )
 }
