@@ -2,8 +2,10 @@ import React from 'react'
 import { Globe, ChevronDown } from 'lucide-react';
 import sidebarItems from './sidebarItems';
 
+
 function Sidebar({ collapsed, onPageChange, activeItem }) {
     const [expandedItem, setExpandedItem] = React.useState(new Set([""]));
+    const [activeSubItem, setActiveSubItem] = React.useState(null);
 
     const toggleExpanded = (itemid) => {
         const newExpanded = new Set(expandedItem);
@@ -40,16 +42,25 @@ function Sidebar({ collapsed, onPageChange, activeItem }) {
                     {sidebarItems.map((item) => {
                         return (
                             <div key={item.id}>
-                                <button className={`w-full flex justify-between items-center p-2 rounded-xl 
-                                    transition-all duration-200 ${activeItem === item.id ? 'bg-orange-100 text-orange-600' : 'text-slate-600 hover:bg-slate-100'}`}
+                                <button
+                                    className={`w-full flex justify-between items-center p-2 rounded-xl 
+                                    transition-all duration-200 ${
+                                        (activeItem === item.id || (item.subItems && item.subItems.some(sub => sub.id === activeSubItem)))
+                                            ? 'bg-orange-200 text-orange-600 font-semibold' : 'text-slate-600 hover:bg-slate-100'
+                                    }`}
                                     onClick={() => {
-                                        if(item.subItems) {
+                                        if (item.subItems) {
                                             toggleExpanded(item.id);
-                                            if (onPageChange) onPageChange(item.id);
+                                            if (item.subItems.length > 0) {
+                                                setActiveSubItem(item.subItems[0].id);
+                                                if (onPageChange) onPageChange(item.subItems[0].id);
+                                            }
                                         } else {
+                                            setActiveSubItem(null);
                                             if (onPageChange) onPageChange(item.id);
                                         }
-                                    }}>
+                                    }}
+                                >
                                     <div className='flex items-center space-x-3'>
                                         <item.icon className='w-5 h-5' />
                                         {!collapsed && (
@@ -68,11 +79,12 @@ function Sidebar({ collapsed, onPageChange, activeItem }) {
                                                 <button
                                                     key={subitem.id}
                                                     className={`w-full ml-2 text-sm text-left p-2 rounded-lg ${
-                                                        activeItem === subitem.id
-                                                            ? 'bg-orange-100 text-orange-600'
+                                                        activeSubItem === subitem.id
+                                                            ? 'bg-orange-100 text-orange-700 font-semibold'
                                                             : 'text-slate-700 hover:bg-slate-100'
                                                     }`}
                                                     onClick={() => {
+                                                        setActiveSubItem(subitem.id);
                                                         if (onPageChange) onPageChange(subitem.id);
                                                     }}
                                                 >

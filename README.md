@@ -1,12 +1,10 @@
-# React + Vite
+# Cluster 3 Dashboard Template
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## File & Folder Guide
 
-Currently, two official plugins are available:
+### Layout folder
+sidebarItems.jsx diyan niyo po i coconfigure yung mga modules and submodules niyo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### modules folder
+dito niyo gawan ng components mga module niyo, makikita niyo yung mga folder na may accronyms, ayan yung mga module namin tapos tapos may mga files sa mga folder na yan, ayan yung mga submodule namin. palitan niyo nalang base sa mga module niyo at wag niyo kalimutan palitan sa ContentRenderer.jsx file, import niyo mga sarili niyong module components then gamitin niyo sa switch statement.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
