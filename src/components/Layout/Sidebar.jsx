@@ -19,9 +19,10 @@ function Sidebar({ collapsed, onPageChange, activeItem }) {
 
     return (
         <div className="flex">
-            <div className={`${collapsed ? 'w-16' : 'w-64'} bg-white border-r border-slate-200/50 flex flex-col transition-width duration-200`}>
+            <div className={`${collapsed ? 'w-16' : 'w-64'} bg-white border-r border-slate-200/50 flex
+            flex-col transition-width duration-200 dark:bg-slate-900 dark:border-slate-700`}>
                 {/* Logo */}
-                <div className='p-6 border-b border-slate-200/50'>
+                <div className='p-6'>
                     <div className='flex items-center space-x-3'>
                         <div className='w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center
                          text-white text-xl font-bold'>
@@ -30,12 +31,14 @@ function Sidebar({ collapsed, onPageChange, activeItem }) {
 
                         {!collapsed && (
                             <div>
-                                <h1 className='text-xl font-bold'>GSM</h1>
+                                <h1 className='text-xl font-bold dark:text-white'>GSM</h1>
                                 <p className='text-xs text-slate-500'>Admin Dashboard</p>
                             </div>
                         )}
                     </div>
                 </div>
+
+                <hr className='border-slate-200 dark:border-slate-700 mx-2' />
 
                 {/* Navigation Links Mapping*/}
                 <nav className='flex-1 p-4 space-y-2 overflow-y-auto'>
@@ -46,7 +49,7 @@ function Sidebar({ collapsed, onPageChange, activeItem }) {
                                     className={`w-full flex justify-between items-center p-2 rounded-xl 
                                     transition-all duration-200 ${
                                         (activeItem === item.id || (item.subItems && item.subItems.some(sub => sub.id === activeSubItem)))
-                                            ? 'bg-orange-200 text-orange-600 font-semibold' : 'text-slate-600 hover:bg-slate-100'
+                                            ? 'bg-orange-200 text-orange-600 font-semibold' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:text-slate-600 dark:hover:bg-slate-200'
                                     }`}
                                     onClick={() => {
                                         if (item.subItems) {
@@ -81,7 +84,7 @@ function Sidebar({ collapsed, onPageChange, activeItem }) {
                                                     className={`w-full ml-2 text-sm text-left p-2 rounded-lg ${
                                                         activeSubItem === subitem.id
                                                             ? 'bg-orange-100 text-orange-700 font-semibold'
-                                                            : 'text-slate-700 hover:bg-slate-100'
+                                                            : 'text-slate-700 dark:text-slate-500 hover:bg-slate-200 dark:hover:text-slate-600 dark:hover:bg-slate-100'
                                                     }`}
                                                     onClick={() => {
                                                         setActiveSubItem(subitem.id);

@@ -29,7 +29,7 @@ function App() {
     
 
     return (
-        <div className={`min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to indigo-50${isDarkMode ? ' dark' : ''}`}> 
+        <div className='min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-800 dark:via-slate-800 dark:to-slate-800 transition-colors duration-200'> 
             <div className='flex h-screen overflow-hidden'>
                 <Sidebar
                     collapsed={sidebarCollapsed}
