@@ -1,6 +1,7 @@
 import React from 'react'
 import { Globe, ChevronDown } from 'lucide-react';
 import sidebarItems from './sidebarItems';
+import ProfileCard from '../ui/ProfileCard';
 
 
 function Sidebar({ collapsed, onPageChange, activeItem }) {
@@ -101,6 +102,8 @@ function Sidebar({ collapsed, onPageChange, activeItem }) {
                         );
                     })}
                 </nav>
+                <hr className='border-slate-300 dark:border-slate-700 mx-2' />
+                <ProfileCard name="Lei Vi" role="Super Saiyan" avatarUrl="/public/Bartss.png" />
             </div>
         </div>
     )
