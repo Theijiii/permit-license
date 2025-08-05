@@ -1,10 +1,16 @@
 # Cluster 3 Dashboard Template
 
-## File & Folder Guide
+## Step by step guide
+1. git clone https://github.com/Eunjiro/gsm
+2. npm install
+3. npm run dev
+then hold Ctrl and click the Local: http:/localhost:1234
 
-### Layout folder
-sidebarItems.jsx diyan niyo po i coconfigure yung mga modules and submodules niyo
+paki aral nalang nung react-router
+yung /pages folder, diyan niyo ilalagay mga module components niyo.
+Then kindly check the route.js diyan niyo icoconfigure yung routes.
+tapos sa App.jsx naman scroll down niyo hanggang makita niyo <main> section
+makikita diyan kung paano ilink yung routes, last is check niyo yung sa /components/sidebar/sidebarItems.js
+iconfigure niyo naman yung mga sidebar items
 
-### modules folder
-dito niyo gawan ng components mga module niyo, makikita niyo yung mga folder na may accronyms, ayan yung mga module namin tapos tapos may mga files sa mga folder na yan, ayan yung mga submodule namin. palitan niyo nalang base sa mga module niyo at wag niyo kalimutan palitan sa ContentRenderer.jsx file, import niyo mga sarili niyong module components then gamitin niyo sa switch statement.
 
