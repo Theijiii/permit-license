@@ -1,9 +1,11 @@
 # Cluster 3 Dashboard Template
 
 ## Step by step guide
+### do this in your terminal on VScode
 1. git clone https://github.com/Eunjiro/gsm
 2. npm install
 3. npm run dev
+   
 then hold Ctrl and click the Local: http:/localhost:1234
 
 paki aral nalang nung react-router
