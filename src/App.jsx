@@ -1,55 +1,57 @@
-import React from 'react'
-import Sidebar from './components/Layout/Sidebar'
-import Header from './components/Layout/Header'
-import Dashboard from './components/modules/Dashboard/DashboardOverview'
-import ContentRenderer from './components/ContentRenderer';
-import sidebarItems from './components/Layout/sidebarItems';
-
+import { useState } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import Sidebar from './components/sidebar/sidebar'
+import Dashboard from './pages/Dashboard'
+import GeneralSettings from './pages/settings/General'
+import SecuritySettings from './pages/settings/Security'
+import Header from './components/header/Header'
+import sidebarItems from './components/sidebar/sidebarItems'
+import Module2 from './pages/Module2'
+import Submodule1 from './pages/module1/Submodule1'
+import Submodule2 from './pages/module1/Submodule2'
+import Submodule3 from './pages/module1/Submodule3'
 
 function App() {
-    const [isDarkMode, setIsDarkMode] = React.useState(false);
-    const handleToggleDarkMode = () => setIsDarkMode((prev) => !prev);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+  const location = useLocation()
 
-
-
-    const [sidebarCollapsed, setSidebarCollapsed] = React.useState(false);
-    const [activeItem, setActiveItem] = React.useState('dashboard');
-
-    // Helper to find breadcrumb path from sidebarItems
-    function getBreadcrumb(itemId) {
-        for (const item of sidebarItems) {
-            if (item.id === itemId) return [item.label];
-            if (item.subItems) {
-                const sub = item.subItems.find(sub => sub.id === itemId);
-                if (sub) return [item.label, sub.label];
-            }
-        }
-        return ['Dashboard'];
+  // Helper to find breadcrumb path from sidebarItems
+  function getBreadcrumb() {
+    for (const item of sidebarItems) {
+      if (item.path === location.pathname) return [item.label]
+      if (item.subItems) {
+        const sub = item.subItems.find(sub => sub.path === location.pathname)
+        if (sub) return [item.label, sub.label]
+      }
     }
-    
+    return ['Dashboard']
+  }
 
-    return (
-        <div className='min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-800 dark:via-slate-800 dark:to-slate-800 transition-colors duration-200'> 
-            <div className='flex h-screen overflow-hidden'>
-                <Sidebar
-                    collapsed={sidebarCollapsed}
-                    onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
-                    activeItem={activeItem}
-                    onPageChange={setActiveItem}
-                />
-                <div className='flex-1 flex flex-col overflow-hidden'>
-                    <Header
-                        sidebarCollapsed={sidebarCollapsed}
-                        onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
-                        breadcrumb={getBreadcrumb(activeItem)}
-                        isDarkMode={isDarkMode}
-                        onToggleDarkMode={handleToggleDarkMode}
-                    />
-                    <div className="flex-1 p-8"><ContentRenderer activeItem={activeItem} /></div>
-                </div>
-            </div>
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-800 dark:via-slate-800 dark:to-slate-800 transition-colors duration-200">
+      <div className='flex h-screen overflow-hidden'>
+        <Sidebar collapsed={sidebarCollapsed} />
+        <div className='flex-1 flex flex-col'>
+          <Header
+            sidebarCollapsed={sidebarCollapsed}
+            onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
+            breadcrumb={getBreadcrumb()}
+          />
+          <main className="flex-1 overflow-auto p-8 dark:bg-slate-800">
+            <Routes>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/module1/submodule1" element={<Submodule1 />} />
+              <Route path="/module1/submodule2" element={<Submodule2 />} />
+              <Route path="/module1/submodule3" element={<Submodule3 />} />
+              <Route path="/module2" element={<Module2 />} />
+              <Route path="/settings/general" element={<GeneralSettings />} />
+              <Route path="/settings/security" element={<SecuritySettings />} />
+            </Routes>
+          </main>
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
 export default App
